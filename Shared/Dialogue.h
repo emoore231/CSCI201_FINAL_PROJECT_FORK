@@ -30,6 +30,17 @@ public:
 	std::wstring Goto;
 	std::vector<Option> Options;
 
+	Dialogue& SetCode(std::wstring lhs) {Code = lhs; return *this; }
+	Dialogue& SetTitle(std::wstring lhs) {Title = lhs; return *this; }
+	Dialogue& SetDesc(std::wstring lhs) {Desc = lhs; return *this; }
+	Dialogue& SetGoto(std::wstring lhs) {Goto = lhs; return *this; }
+	Dialogue& SetType(type t) {Type = t; return *this; }
+
+	Dialogue& AddOption (Option o)
+	{
+		Options.push_back (o); return *this;
+	}
+
 	Dialogue ();
 
 	Dialogue
