@@ -32,7 +32,7 @@ namespace Moore
 				: std::runtime_error (msg.c_str ()), Loc (l), Message(msg)
 			{}
 
-			virtual char const* what () const override
+			virtual char const* what () const noexcept override
 			{
 				return (char const*) (Message).c_str ();
 			}
@@ -46,12 +46,14 @@ namespace Moore
 			{
 				static std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> Converter;
 				lhs << L"An error has occured" << std::endl << Converter.from_bytes(rhs.What ()) << std::endl;
+				return lhs;
 			}
 
 			friend std::ostream& operator<< (std::ostream& lhs, IException& rhs)
 			{
 				static std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> Converter;
 				lhs << "An error has occured" << std::endl << rhs.What () << std::endl;
+				return lhs;
 			}
 
 		protected:
@@ -79,7 +81,7 @@ namespace Moore
 				: IException (Msg, IException::Location::FRONTEND), _Comp(c)
 			{}
 
-			virtual char const* what () const override
+			virtual char const* what () const noexcept override
 			{
 				return (char const*) (Message).c_str ();
 			}
@@ -112,7 +114,7 @@ namespace Moore
 				: IException (Msg, IException::Location::CORE), _Comp(c)
 			{}
 
-			virtual char const* what () const override
+			virtual char const* what () const noexcept override
 			{
 				return (char const*) (Message).c_str ();
 			}
@@ -146,7 +148,7 @@ namespace Moore
 				: IException (Msg, IException::Location::BACKEND), _Comp (c)
 			{}
 
-			virtual char const* what () const override
+			virtual char const* what () const noexcept override
 			{
 				return (char const*) (Message).c_str ();
 			}
@@ -178,7 +180,7 @@ namespace Moore
 				: IException (Msg, IException::Location::BOOTSTRAPPER), _Comp (c)
 			{}
 
-			virtual char const* what () const override
+			virtual char const* what () const noexcept override
 			{
 				return (char const*) (Message).c_str ();
 			}

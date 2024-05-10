@@ -15,7 +15,7 @@
 #include <locale>
 #include <codecvt>
 
-#include <io.h>
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <setjmp.h>
@@ -57,8 +57,11 @@ L"\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 #if defined(_WIN32)
 #include <Windows.h>
 #define CLEAR ::system("cls") // clear the console
+#include <io.h>
+#define SET_MODE _setmode (_fileno (stdout), _O_U16TEXT);
 #else
 #define CLEAR
+#define SET_MODE
 #endif
 
 //os specific stuffs
@@ -96,7 +99,7 @@ DLL_EXPORT Status UniversalMain (const std::vector<std::wstring> Args);
 int main (int argc, char** argv)
 {
 	//special character stuffs
-	_setmode (_fileno (stdout), _O_U16TEXT);
+	SET_MODE;
 	SET_CODEPAGE;
 
 	//convert args
@@ -123,7 +126,7 @@ int main (int argc, char** argv)
 int wmain (int argc, wchar_t** argv)
 {
 	//special chars
-	_setmode (_fileno (stdout), _O_U16TEXT);
+	SET_MODE;
 	SET_CODEPAGE;
 
 	//convert args
@@ -230,7 +233,7 @@ Again:
 	//get data lists file name
 
 		//load function pointer
-	Moore::Bootstrapper::SetGetDataListsFileName (Moore::Bootstrapper::GetDataListsFileNameImplemented);
+	Moore::Bootstrapper::SetGetDataListsFileName ();
 
 	const std::wstring DataListsFile = GET_FILE (&std::wcout, &std::wcin);
 
