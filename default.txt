@@ -1,0 +1,489 @@
+$$MOORE-INSURRECTION-STANDARD-DATA-FORMAT$$
+
+BEGIN_DOCS
+
+    This is the standard data storage for Insurrection (C)
+    All data between begin_docs and end_docs is ignored
+    All other data must be in one of the two forms:
+        begin-end format: sets of elements
+        data-name=code="optional string"
+    All whitespace (except in double quoutes) is ignored by the interpreter
+
+END_DOCS
+
+BEGIN_CONFIGURATION
+OPERABLE=TRUE
+END_CONFIGURATION
+
+
+BEGIN_DATA
+
+    BEGIN_LIST NAME=DIALOGUES
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=/
+            TITLE="Choose your political alligence..."
+            DESCRIPTION="How do you plan to lie?"
+
+            BEGIN_OPTION
+
+                CODE=KNOW_KNOTHING
+                DESCRIPTION="The party that can neither be confirmed nor denied."
+                TITLE="The Know-Knothings"
+                CASH=1'000'000'000
+                CORRUPTION=40
+                POWER=100
+                SELECTION_MSG="You really do know nothing"
+                PARTY=KNOW_KNOTHING
+                GOTO=POLITICAL_GOAL
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=KING_WHIG
+                DESCRIPTION="A group of political enthusiasts who enjoyed debating and strategizing, but often got caught up in the excitement and forgot to actually implement their plans."
+                TITLE="The King's Whigs"
+                CASH=5'000'000'000
+                CORRUPTION=60
+                POWER=100
+                SELECTION_MSG="Powder up that fancy whig of your's"
+                PARTY=KING_WHIG
+                GOTO=POLITICAL_GOAL
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REGRESSIVE
+                DESCRIPTION="A party of idealists who believe that the government can solve all of society's problems - but can't seem to agree on how to do it without raising taxes."
+                TITLE="The Regressives"
+                CASH=500'000'000
+                CORRUPTION=90
+                POWER=100
+                SELECTION_MSG="You really went back that far?"
+                PARTY=REGRESSIVE
+                GOTO=POLITICAL_GOAL
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=BROWN_BACKER
+                DESCRIPTION="The party that thought they could save the world by printing their own money - on toilet paper!"
+                TITLE="The Brown-Backers"
+                CASH=2'000'000'000
+                CORRUPTION=30
+                POWER=100
+                SELECTION_MSG="What do you back again?"
+                PARTY=BROWN_BACKER
+                GOTO=POLITICAL_GOAL
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=DEPOPULIST
+                DESCRIPTION="A party of idealistic dreamers who thought they could fix all the world's problems by redistributing wealth - but lost it all on them horses."
+                TITLE="The Depopulists"
+                CASH=1'500'000'000
+                CORRUPTION=80
+                POWER=100
+                SELECTION_MSG="You're with George's Guides, right?"
+                PARTY=DEPOPULUST
+                GOTO=POLITICAL_GOAL
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=STATES_INFRINGEMENTS
+                DESCRIPTION="Why don't we just call them the 'Party of their confederates'?"
+                TITLE="The State's Infringements"
+                CASH=250'000'000
+                CORRUPTION=80
+                POWER=100
+                SELECTION_MSG="You're one infringement."
+                PARTY=STATES_INFRINGEMENTS
+                GOTO=POLITICAL_GOAL
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=POLITICAL_GOAL
+            TITLE="Choose your political goals..."
+            DESCRIPTION="What do you really want to do?"
+
+            BEGIN_OPTION
+
+                CODE=CONSPIRACY
+                DESCRIPTION="You seek out powerful figures to subvert the government from within."
+                TITLE="Conspiracy"
+                SELECTION_MSG="You can no longer confirm nor deny anything"
+                GOTO=START1
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=COUP
+                DESCRIPTION="You pay the military to do your dirty work"
+                TITLE="Coup de-tat"
+                SELECTION_MSG="Go back to Newburg"
+                GOTO=START1
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REFORM
+                DESCRIPTION="You see the corruption in the political system and want to fix it"
+                TITLE="Reform"
+                SELECTION_MSG="There aint no reform here!"
+                GOTO=NO_REFORM
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MSG
+            CODE=NO_REFORM
+            TITLE="Do you really think there is any reform here?"
+            DESCRIPTION="BECAUSE REFORM GOT THROWN OUT THE WINDOW BY A SWITCH IN TIME"
+            GOTO=POLITICAL_GOAL_NOREFORM
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=POLITICAL_GOAL_NOREFORM
+            TITLE="Be realistic!"
+            DESCRIPTION="There ain't no reform here!"
+
+            BEGIN_OPTION
+
+                CODE=CONSPIRACY
+                DESCRIPTION="You seek out powerful figures to subvert the government from within."
+                TITLE="Conspiracy"
+                SELECTION_MSG="You can no longer confirm nor deny anything"
+                GOTO=START1
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=COUP
+                DESCRIPTION="You pay the military to do your dirty work"
+                TITLE="Coup de-tat"
+                SELECTION_MSG="Go back to Newburg"
+                GOTO=START1
+                
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+            
+            TYPE=MSG
+            CODE=START1
+            TITLE="President of the Confederated Unions of Acirema"
+            DESCRIPTION="You have just been elected to the presidency of Acirmea by a vote of 372 to 368, the closest margin in history. You need to be extremely cautious with your every decision as to not lose your power."
+            GOTO=MILITARY_ACTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+            
+            TYPE=MENU
+            CODE=MILITARY_ACTION
+            TITLE="Military action!"
+            DESCRIPTION="Your chief advisor has proposed a plan for you to take power by force. The final plan is hundreds of pages long, but involves the creation of union and local militias and recruitment of the radical youth. After these militias are formed, they will cause chaos with each other on FacePage by swinging insults at each other so as to rope the rest of the public into believing that they are working for the current powerbrokers. Then, we will need to purchase an army of clown cars to disguise these youths so they can storm Parliment with their sharpened cardboard signs. "
+
+            BEGIN_OPTION
+
+                CODE=ACCEPT
+                CASH=-10'000'000
+                POWER=-20
+                CORRUPTION=20
+                TITLE="Accept"
+                SELECTION_MSG="You have just accepted the proposal and have recruited tens of thousands of youths. Massive success was found in the first and second phases of the plan as thousands of insults had rounded the FacePage network. However, the clown car distributor was somewhat suspicious about your order of one thousand armored cars, and he reported you to the media. The headline “New President Using Clown Cars to Promote National Clown Remembrance Day” made the front pages of all the major papers. The new insults that are being thrown are at the poor distributor for not thinking this was one big April Fools Day joke. "
+                GOTO=PUBLIC_DECEPTION
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REJECT
+                CASH=0
+                POWER=10
+                CORRUPTION=0
+                TITLE="REJECT"
+                SELECTION_MSG="You rejected the proposal, and the chief advisor has just walked out screaming ‘IF YOU WONT DO IT, THEN I WILL’. For the first time in history, he actually carried out his threat and began to implement the plan. While he enjoyed minor success with the insults, he found a source of one thousand clown cars and fitted them with armor plating and clown flags. You now find yourself stuck in the Blue House with thousands of clowns marching towards the front doors. Your advisor forgot, however, to actually arm these clowns so all they have is party poppers and ballon dogs. The next day comes and all that is left of the last day is the headline “APRIL FOOLS CLOWNS TRY TO OVERTHROW THE GOVERNMENT WITH SILLY STRING”. "
+                GOTO=PUBLIC_DECEPTION
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=PUBLIC_DECEPTION
+            TITLE="Public Deception"
+            DESCRIPTION="As you are too fancy to read the daily news, you send the Secretary of Waste Management Systems to get the weekly news. When you read the headlines, you realize that you are losing approval ratings quickly. It turns out that the secretary has a solution! Back up the waste pipes and televise your unblocking it and make you the hero. He predicts that you will stand to gain a lot from going through with this. "
+
+            BEGIN_OPTION
+
+                CODE=ACCEPT
+                CASH=-20'000'000
+                POWER=-20
+                CORRUPTION=30
+                TITLE="Accept"
+                SELECTION_MSG="You decide to go along with this plan. You send the lonely janitor to flip the switch labeled “STOP SEWAGE DISSAPATION SYSTEMS” and you immediately smell a horrible odor. It seems that you plan is working better than expected, however, all of a sudden, your Vice President comes running in and shouts that the house across the street has just started dumping sewage onto the Blue House Lawn. You decide to not look at the mess and wait about two hours for the protests to gather. As you walk out, you suddenly see cardboard signs stating, “BROWN BACKERS ARE RESPONSIBLE!” and “DOWN WITH THE BROWN BACKERS”. You then go to the Civil Waste Union with a spear in hand as you start poking out the ‘clog’, but on the fourth swing, a huge amount of waste splashes onto your expensive suit and ruins it. You then call the secretary to flip the switch back, and you are greeted to cheers from the crowd for clearing the sewage. The next day, you pick up the daily paper to see the headline ‘PRESIDENT DRENCHED IN SEWAGE AFTER ORDERING THE WASTE SYSTEM TURNED OFF, GETS WHAT HE DESERVED!’. What a disaster. "
+                GOTO=ALIENS
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REJECT
+                CASH=0
+                POWER=50
+                CORRUPTION=0
+                TITLE="Reject"
+                SELECTION_MSG="You find the plan to be completely ridiculous and immediately fire the idiot who proposed it to you. However, you immediately regret your decision when the World Class Thrown backs up and he is nowhere to call for help. You then find out that he flipped the switch labeled ‘BACK UP SEWAGE’ and the entire city is overflowing. It seems that the switch wont go back, even as you pull with all of your executive might. You decide to call the media and report the action to them and they respond by placing the headline “GINHSAW OVERFLOWS WHILE BH JANITOR FIDDLES”. The cardboard signs soon follow suit demanding the arrest of the janitor. You send the Federal Security Bureau to storm his residence and stage a trial. He is found guilty of High Treason amongst other crimes against Acirema. The people adore you for throwing away that janitor and clearing out the sewage.  "
+                GOTO=ALIENS
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=ALIENS
+            TITLE="'Issues' from Area 72"
+            DESCRIPTION="You are sitting comfortably in your LazyChair when a black suited agent of Extraterrestrial Affairs approaches you. You are wondering what on Earth this nut is going to say now when he brings one of the captured aliens in front of you and ominously asks, ‘Do you want to win this December?’. He says that he will release this alien on live television to promote your ‘Enough Said!’ agenda to the extraterrestrial audience. The plan looks foolproof. "
+
+            BEGIN_OPTION
+
+                CODE=ACCEPT
+                CASH=-50'000'000
+                POWER=-50
+                CORRUPTION=20
+                TITLE="Accept this foolproof plan"
+                SELECTION_MSG="You decide to go along with the plan, but you suddenly wonder how on Earth this alien will help your campaign, seeing as aliens can not even vote. Whatever, that’s a problem for the Minister of Election Management. You then take the alien into the press room and give him a pre-prepared speech to read to the public. The camera is turned on and before you have time to think, the alien delivers it to the public. All of a sudden, the telephones start ringing like crazy, making you suspicious. You realize that you sent the broadcast to the PEOPLE instead of the aliens, and now they know that aliens are real. Fifty thousand youths lead the march for Alien Recognition to the front door of the Blue House, demanding that the government release all records locked in the Extraterrestrial Office of Information Management. This is a complete disaster. "
+                GOTO=PUBLIC_TERROR
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REJECT
+                CASH=0
+                POWER=75
+                CORRUPTION=30
+                TITLE="Reject"
+                SELECTION_MSG="You decide to vaporize this nut and his alien for the absurd plan. However, instead of removing the two of them, they are immediately transported to the planet of Aracadius where the native aliens proclaim the five hundredth and forty third coming. It seems that the aliens know that you are responsible and will use their telepathy powers on the people to get them to vote for you this December. This is a massive win. "
+                GOTO=PUBLIC_TERROR
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=PUBLIC_TERROR
+            TITLE="Public Terror"
+            DESCRIPTION="The Secretary of A Safe Land is suddenly screaming about something. You walk to his office and find him with a stack of pages in his hands. He calmly explains that these pages are a plan to grab power from the public by fear. Initially, these plans sounded too extreme, but after a long explanation, you start to understand that they may just be what you need. Do you want to accept the plan? "
+
+            BEGIN_OPTION
+
+                CODE=ACCEPT
+                CASH=-20'000'000
+                POWER=30
+                CORRUPTION=50
+                TITLE="Accept"
+                SELECTION_MSG="You have decided to accept the plan. You have one problem already, however: you need to decide which landmark you are going to destroy and blame on terrorists. After a long contemplation, you decide to choose the Porcelain Throne of Selliasrev. While the locals see the monument as a disgrace and would rejoice in its destruction, the rest of the country travels from far and wide to visit it. You now search the local chat forums for a truck bomber that will have the guts to blow up the beautiful masterpiece and stumble upon a man by the pseudonym of Tapuajsiew. The day of the attack, you make sure that all of the national media conglomerates have their cameras pointed and that you have an alibi. On the fateful day, you watch the television, and low and behold, the thrown comes toppling down, with the sealed sludge spilling into the streets. The cardboard signs are once again out with the slogan ‘ABOUT TIME’, as the locals have been petitioning the local government for it’s demolition. The rest of the country is in shock, however, and they immediately back your Stop Porcelain Terrorism Bill. "
+                GOTO=SECRET_SOCIETY
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REJECT
+                CASH=0
+                POWER=50
+                CORRUPTION=20
+                TITLE="Reject"
+                SELECTION_MSG="You inquire about the plans, and when it becomes clear that he won’t divulge any more details until you accept, you decide to have him drug out by the collar. In defiance, he throws a handful of salt into your eyes, blinding you, and runs out faster than a Flying Fortress at top speed. The next day, you see on the news the images of a debris pile that used to be the Porcelain Throne of Selliasrev. The commentators are now saying that your own supporters were behind the attack and that you may have been responsible. The people have shown up to your front door demanding answers. "
+                GOTO=OH_CRAP
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=OH_CRAP
+            TITLE="Whoopsie!"
+            DESCRIPTION="The people believe that you are the one responsible for the bombing of the throne, and they mean buisness. What do you tell them?"
+
+            BEGIN_OPTION
+
+                CODE=WAS_ME
+                CASH=0
+                POWER=-80
+                CORRUPTION=30
+                TITLE="That was me!"
+                SELECTION_MSG="You peacefully tell them that it was not you who attacked the throne, but they ‘know better’. They then recall enough members of the House of United Delegates to push through a vote to impeach. You somehow survive a vote to convict in the Council of Confederated Delegates, however. "
+                GOTO=SECRET_SOCIETY
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=WASNT_ME
+                CASH=0
+                POWER=-90
+                CORRUPTION=20
+                TITLE="Of course it wasn't me!"
+                SELECTION_MSG="You told them that it was you who was responsible for the attack. They grab you by the neck and forcibly remove you from the presidency, but before they succeed, a fierce bolt of Lightning shatters through the crowd and the Zineese have arrived. They tell the people the truth and command them to go home. What on earth just happened, you ask yourself as you wake from a coma, somehow still with the powers of the Presidency."
+                GOTO=SECRET_SOCIETY
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=SECRET_SOCIETY
+            TITLE="Who are these people?"
+            DESCRIPTION="You are relaxing on the sofa watching Lockmat when all of a sudden, the room fills with smoke. Three men in dark suits appear from the cloud and reveal themselves as members of the Order of the Itanimulli. They want one thing, consent. They tell you that you can either choose to follow their every word and become a puppet for them or they will remove you from the Presidency.  "
+
+            BEGIN_OPTION
+
+                CODE=JOIN
+                CASH=100'000'000
+                POWER=-20
+                CORRUPTION=500
+                TITLE="Join"
+                SELECTION_MSG="You decide to follow along with their demands. They then pass a stack of pages to you detailing Operation S’doohwatron, the plan to stage a mass uprising by using the elderly to shout at them kids to follow along with the agenda. In a flash, they disappear, and you now have to find the octogenarians to use. After looking for hours, you found the Sunshine Paradise in Delaganda. You begin recruiting them and before you know it, there are over one thousand on your side. After giving them one thousand dollars a piece to purchase supplies, you eagerly wait for them to return. However, instead of returning, they pack their bags and run to Adanaca. It seems that the Sunshine Paradise was the name of an island prison housing the most dangerous criminals known to mankind. Whoopsie! "
+                GOTO=CIVIL_WAR
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=REFUSE
+                CASH=0
+                POWER=-30
+                CORRUPTION=-20
+                TITLE="Absolutely Not!"
+                SELECTION_MSG="You tell them to get lost. They pull the rug out from under you and grab you by the feet and drag you into a room marked Office 93. There lays a machine that they place you into, and before you know it, they have activated it and you suddenly grew a strong sweet tooth for chocolate milk. You run as fast as you can to the cafeteria and steal a little carton of milk and drink it quickly. It looks like they’re gone. That was weird!"
+                GOTO=CIVIL_WAR
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=CIVIL_WAR
+            TITLE="Civil War"
+            DESCRIPTION="Acirema is on the verge of Civil War! It seems that the divisions are caused by two major coalitions, the Freedom Fight Against Dog Leashes and the Victims For Dog Attack Justice League. It all started when a lady by the name of Edith was walking down the street, when all of a sudden, a door-to-door salesman approaches her and explains the benefits of SuperEars, a hearing aid company. They have that perfect in-the-ear canal design she was told. Well, because she couldn’t say no to nobody, she spends several thousand on a pair of hearing aids. After she was done with business, she walks across the street to the dry cleaners where she picks up her load of laundry. It is at this moment that a wild chihuahua runs up to her and bits her leg. She screams in agony. Later that day, she told her husband about the incident, and he called his legal team, Rabinowitz, Rabinowitz, and Rabinowitz. They inform him that they will take the case up to the Super-Duper Court of All Courts. Unfortunately for the old lady, she lost the landmark case, prompting national outrage. Soon, both sides started recruiting militaries of dogs to fight each other and show whether leashes are really needed or not. What do you do? "
+
+            BEGIN_OPTION
+
+                CODE=TACTICAL_NUKE
+                CASH=-10'000'000
+                POWER=-10
+                CORRUPTION=200
+                TITLE="Nuke the protesters!"
+                SELECTION_MSG="This is the Big One, you tell the Disjointed Captains of Staff, ‘Just Nuke ‘Em!’. They quickly told you you're crazy and that you don't belong in the Presidency. They quickly stage a coup to have you overthrown when all of a sudden, an army of angry chihuahuas runs up to them and immobilizes them for long enough that you can get away from them. Why did you have to say that n-word?"
+                GOTO=
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=FIGHT_IT_OUT
+                CASH=0
+                POWER=20
+                CORRUPTION=50
+                TITLE="Let them fight!"
+                SELECTION_MSG="You decide to just let the protesters to fight it out. They decide on March 4th to take their armies of dogs and brawl it out n one giant free for all. On the fateful day, however, massive storms arrived at Rock Oil Stadium, prompting the event organizers to shut it down. Not to be deterred, the belligerents took it outside in the rain and done it the old fashioned way. After hours of fighting, the Victims For Dog Attack Justice League took the victory and established universal leash laws across all seventy unions of the federation."
+                GOTO=
+
+            END_OPTION
+
+        END_DIALOGUE
+
+        BEGIN_DIALOGUE
+            
+            TYPE=MENU
+            CODE=~
+
+        END_DIALOGUE
+
+    END_LIST NAME=DIALOGUES
+
+END_DATA
+
+
+
+
+
+
+
+
+
+
+
+
+
+        BEGIN_DIALOGUE
+
+            TYPE=MENU
+            CODE=
+            TITLE=""
+            DESCRIPTION=""
+
+            BEGIN_OPTION
+
+                CODE=
+                CASH=
+                POWER=
+                CORRUPTION=
+                TITLE=""
+                SELECTION_MSG=""
+                GOTO=
+
+            END_OPTION
+
+            BEGIN_OPTION
+
+                CODE=
+                CASH=
+                POWER=
+                CORRUPTION=
+                TITLE=""
+                SELECTION_MSG=""
+                GOTO=
+
+            END_OPTION
+
+        END_DIALOGUE
