@@ -98,13 +98,13 @@ inline void Moore::Core::DialogueNavigator::AdvanceDialogue ()
 	}
 
 	//check if options are available, halt if none found
-	int Available{};
+	int Available = 0;
 	for (const auto& Opt : CurrentDialogue.Options)
 	{
 		if (Opt.Cash + States.Cash > 0l) Available++;
 		if (Opt.Power + States.Power > 0l) Available++;
 		if (Opt.Corruption + States.Corruption > 0) Available++;
-		if (Available == 3) { Available = 1; break; } else Available = 0;
+		if (Available == 3) { Available = true; break; } else Available = 0;
 	}
 	if (CurrentDialogue.Options.size () == 0) Available = true;
 	if (!Available) Halt (Frontend::Result(rand () % 3));

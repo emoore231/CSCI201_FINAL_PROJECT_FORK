@@ -13,9 +13,9 @@ namespace Moore
 //state table for current state
 struct Moore::Backend::StateTable
 {
-	unsigned long Cash;
-	unsigned long Corruption;
-	unsigned long Power;
+	long Cash;
+	long Corruption;
+	long Power;
 
 	std::wstring Party;
 	std::wstring Goal;

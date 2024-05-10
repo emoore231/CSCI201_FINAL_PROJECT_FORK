@@ -270,6 +270,7 @@ Again:
 //
 //	const auto State = Moore::Backend::StateTable{ 100,100,100 };
 
+	//add dialogues to datalists manually
 	Moore::Backend::DataLists DataLists;
 
 	DataLists.Dialogues.Dialogues.push_back (Moore::Shared::Dialogue ()
@@ -569,7 +570,7 @@ Again:
 			 .SetCorruption (200)
 			 .SetTitle (L"Nuke the protesters!")
 			 .SetSelMsg (L"This is the Big One, you tell the Disjointed Captains of Staff, 'Just Nuke 'Em!'. They quickly told you you're crazy and that you don't belong in the Presidency. They quickly stage a coup to have you overthrown when all of a sudden, an army of angry chihuahuas runs up to them and immobilizes them for long enough that you can get away from them. Why did you have to say that n-word?")
-			 .SetGoto (L"~")
+			 .SetGoto (L"SKY_COLOR_CHANGE")
 		 )
 		 .AddOption (
 			 Moore::Shared::Option ()
@@ -579,9 +580,66 @@ Again:
 			 .SetCorruption (50)
 			 .SetTitle (L"Let them fight!")
 			 .SetSelMsg (L"You decide to just let the protesters to fight it out. They decide on March 4th to take their armies of dogs and brawl it out n one giant free for all. On the fateful day, however, massive storms arrived at Rock Oil Stadium, prompting the event organizers to shut it down. Not to be deterred, the belligerents took it outside in the rain and done it the old fashioned way. After hours of fighting, the Victims For Dog Attack Justice League took the victory and established universal leash laws across all seventy unions of the federation.")
+			 .SetGoto (L"SKY_COLOR_CHANGE")
+		 )
+	 );
+
+	 DataLists.Dialogues.Dialogues.push_back (
+		 Moore::Shared::Dialogue ()
+		 .SetType (Moore::Shared::Dialogue::type::MENU)
+		 .SetCode (L"SKY_COLOR_CHANGE")
+		 .SetTitle (L"Sky Color Change")
+		 .SetDesc (L"You wake up one day and look out of the window to all of a sudden see the sky turn green! You realize that this is probably because of one of your stupid policies to spray green spray-paint in the atmosphere to make the dead grass look green once again. You don't have time to holler at the secretary who allowed you to do that as a mob of angry protesters have taken their cardboard signs to your front door. You dial 811 to have this issue buried and are quickly connected to the Information Management Office. What do you want them to do?")
+		 .AddOption (
+			 Moore::Shared::Option ()
+			 .SetCode (L"DONT_BELIEVE_EYES")
+			 .SetCash (0)
+			 .SetPower (10)
+			 .SetCorruption (20)
+			 .SetTitle (L"Tell the people not to believe their lying eyes")
+			 .SetSelMsg (L"You tell the Office of Information Management to distribute headlines telling readers not to believe their own lying eyes. All of a sudden, the protests disperse and the people are now chanting 'BLUE SKY'. It appears that this has worked better than expected as the people are now building monuments for the blue sky. When the sky does eventually turn back to being blue, the people wonder why they were building these monuments.")
+			 .SetGoto (L"~")
+		 )
+		 .AddOption (
+			 Moore::Shared::Option ()
+			 .SetCode (L"SKY_ALWAYS_GREEN")
+			 .SetCash (0)
+			 .SetPower (5)
+			 .SetCorruption (30)
+			 .SetTitle (L"Tell the people the sky was always green")
+			 .SetSelMsg (L"You tell the Office of Information Management to distribute headlines telling readers that the sky has always been green. The people, upon reading the 'news' are delusionally excited that the sky has always been green.")
+			 .SetGoto (L"WORLD_WAR")
+		 )
+		 .AddOption (
+			 Moore::Shared::Option ()
+			 .SetCode (L"SPRAY_BLUE")
+			 .SetCash (-5000000)
+			 .SetPower (5)
+			 .SetCorruption (50)
+			 .SetTitle (L"Spray the sky with blue spray paint")
+			 .SetSelMsg (L"You tell the Office of Information Management to fly those same planes into the sky but with blue spray paint instead. Three of the planes make it successfully, but the fourth loses an engine and crashes mid-flight. The crash site is completely blue, in fact, all of the grass has also turned blue. Everything is blue.")
+			 .SetGoto (L"WORLD_WAR")
+		 )
+	 );
+
+	 DataLists.Dialogues.Dialogues.push_back (
+		 Moore::Shared::Dialogue ()
+		 .SetType (Moore::Shared::Dialogue::type::MENU)
+		 .SetCode (L"WORLD_WAR")
+		 .SetTitle (L"World War")
+		 .SetDesc (L"Oh crap! The three superpowers, Acirema, Aisatsae, and Aisarue, have all signed onto a declaration of war. What on earth caused this, you ask yourself. Well, it all started with the Regrebredali meeting. It seems the most powerful figures of the world went there one year to discuss Plan 3036, a top-secret plan for instigating World War between the superpowers. The plan involved the release of a carefully crafted meme onto the FacePage network to lure the citizens of the nations to sing the forbidden song, Baby Whale. Soon enough, even the Disjointed Chiefs of Staff were singing it, and accidentally pressed the wrong button, the one labeled 'The Big One'. The button, it turns out, launched the entire nuclear arsenal at the two other nations, and in response, they launched their entire arsenals. You have less than ten minutes to make your decision, should it be your last. What do you do?")
+		 .AddOption (
+			 Moore::Shared::Option ()
+			 .SetCode (L"SING_BABY_WHALE")
+			 .SetCash (-100000000)
+			 .SetPower (-80)
+			 .SetCorruption (-200)
+			 .SetTitle (L"Sing Baby Whale yourself")
+			 .SetSelMsg (L"You start singing that wretched song yourself, even though you were responsible for passing an amendment giving it capital punishment. All of a sudden, a gigantic whale falls from the sky with a nuclear warhead in its mouth. Soon, thousands of such whales start to fall from the sky and collectively destroy all nuclear bombs. The war is still waging on, however. You immediately mobilize the Canine Elite Squad to invade the capital cities. You eagerly wait for the results.")
 			 .SetGoto (L"~")
 		 )
 	 );
+
 
 	 DataLists.Dialogues.Dialogues.push_back (Moore::Shared::Dialogue ()
 		 .SetType (Moore::Shared::Dialogue::type::MSG)
