@@ -75,7 +75,7 @@ static inline bool ValidateDataListsMagicWord (const std::wstring FileName)
 	else
 	{
 		File.close ();
-		return false;
+		return false; 
 	}
 }
 

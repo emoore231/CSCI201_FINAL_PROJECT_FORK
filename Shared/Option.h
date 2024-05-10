@@ -25,6 +25,18 @@ public:
 	long Corruption;
 	long Power;
 
+	Option& SetCode(std::wstring lhs) { Code = lhs; return *this; }
+	Option& SetTitle(std::wstring lhs) { Title = lhs; return *this; }
+	Option& SetDesc(std::wstring lhs) { Desc = lhs; return *this; }
+	Option& SetSelMsg(std::wstring lhs) { SelMsg = lhs; return *this; }
+	Option& SetParty(std::wstring lhs) { Party = lhs; return *this; }
+	Option& SetGoal(std::wstring lhs) { Goal = lhs; return *this; }
+	Option& SetGoto(std::wstring lhs) { Goto = lhs; return *this; }
+
+	Option& SetCash(long lhs) { Cash = lhs; return *this; }
+	Option& SetCorruption (long lhs) { Corruption = lhs; return *this; }
+	Option& SetPower (long lhs) { Power = lhs; return *this; }
+
 public:
 	Option ();
 

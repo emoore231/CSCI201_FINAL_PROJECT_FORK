@@ -15,8 +15,11 @@ namespace Moore
 class Moore::Backend::DataLists
 {
 public:
-	const DialogueTable Dialogues;
-	const Configuration Config;
+	DialogueTable Dialogues;
+	Configuration Config;
 
 	DataLists (const std::wstring FileName);
+
+	DataLists ()
+	{};
 };
