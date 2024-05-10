@@ -46,10 +46,14 @@ static inline std::vector<std::wstring> GetFilesInWorkingDir ()
 }
 
 #else // assume linux
-
+static inline std::vector<std::wstring> GetFilesInWorkingDir () 
+{
+	return std::vector<std::wstring>();
+}
 #endif
 
-
+#include <locale>
+#include <codecvt>
 
 
 #pragma endregion PLATFORM_SPECIFIC
@@ -57,7 +61,9 @@ static inline std::vector<std::wstring> GetFilesInWorkingDir ()
 //validate the file has the magic word
 static inline bool ValidateDataListsMagicWord (const std::wstring FileName)
 {
-	std::wfstream File (FileName);
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> Converter;
+	auto FileNarrow = Converter.to_bytes(FileName);
+	std::wfstream File (FileNarrow.c_str());
 	std::wstring MagicWord;
 	std::getline (File, MagicWord);
 

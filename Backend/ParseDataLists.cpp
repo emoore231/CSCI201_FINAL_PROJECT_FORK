@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <thread>
+#include <algorithm>
+#include <thread>
 
 #include "../Shared/Option.h"
 #include "../Shared/Dialogue.h"
@@ -237,6 +239,8 @@ static inline std::vector<std::wstring> LoadDialogues (const std::wstring FileDa
 		Return.pop_back ();
 		return Return;
 	}
+
+	return Return;
 }
 
 
@@ -298,12 +302,12 @@ static inline OptionData ParseOption (std::wstring OptionsData)
 {
 	OptionData Option{};
 
-	std::vector<std::thread> Threads;
+	//std::vector<std::thread> Threads;
 
 	//scan for each option tag
 	for (const auto& OptionTag : OptionTags)
 	{
-		Threads.push_back (std::thread (
+		//Threads.push_back (std::thread (
 			[&]() -> int
 			{
 				try
@@ -442,16 +446,16 @@ static inline OptionData ParseOption (std::wstring OptionsData)
 					return 1;
 				}
 				return 0;
-			}
-			));
+			}();
+			//));
 	}
 
 	//join all threads
-	for (size_t i = 0; i < Threads.size(); i++)
-	{
-		Threads[i].join ();
-	}
-	
+	//for (size_t i = 0; i < Threads.size(); i++)
+	//{
+	//	Threads[i].join ();
+	//}
+	//
 	return Option;
 }
 
@@ -479,13 +483,13 @@ static inline DialogueData ParseDialogue (std::wstring DialogueStr)
 	DialogueData Dialogue;
 	Dialogue.Options = Options;
 
-	std::vector<std::thread> Threads;
+	//std::vector<std::thread> Threads;
 
 	//scan for each dialogue tag
 	for (const auto& DialogueTag : DialogueTags)
 	{ 
 		//create threads
-		Threads.push_back (std::thread (
+		//Threads.push_back (std::thread (
 			[&]() -> int
 			{
 				try
@@ -602,18 +606,18 @@ static inline DialogueData ParseDialogue (std::wstring DialogueStr)
 					return 1;
 				}
 				return 0;
-			}
-		));
+			}();
+		//));
 		
 		OptionData Option;
 
 	}
 
 	//join threads
-	for (size_t i = 0; i < Threads.size(); i++)
-	{
-		Threads[i].join ();
-	}
+	//for (size_t i = 0; i < Threads.size(); i++)
+	//{
+	//	Threads[i].join ();
+	//}
 	return Dialogue;
 }
 
@@ -652,16 +656,17 @@ static inline std::vector<DialogueData> ParseListDialoguesMT (std::wstring Data)
 	std::wstring DialogueListData = LoadListDialogues (Data);
 	std::vector<std::wstring> DialoguesData = LoadDialogues (DialogueListData);
 	std::vector<DialogueData> Dialogues(DialoguesData.size ());
-	std::vector<std::thread> Threads;
+	//std::vector<std::thread> Threads;
 	//i know volatile does nothing in this context
 	for (volatile size_t i = 0; i < DialoguesData.size(); i++)
 	{
-		Threads.push_back (std::thread (ParseDialogueThreadable, &Dialogues[i], DialoguesData[i]));
+		//Threads.push_back (std::thread (ParseDialogueThreadable, &Dialogues[i], DialoguesData[i]));
+		ParseDialogueThreadable(&Dialogues[i], DialoguesData[i]);
 	}
 
 	for (volatile size_t i = 0; i < DialoguesData.size (); i++)
 	{
-		Threads[i].join();
+		//Threads[i].join();
 	}
 
 	return Dialogues;
@@ -670,7 +675,7 @@ static inline std::vector<DialogueData> ParseListDialoguesMT (std::wstring Data)
 #include "../Shared/Exceptions.h"
 
 //parse the datalists, entry point to translation unit
-std::vector<Moore::Shared::Dialogue> Moore::Backend::ParseDataLists (std::wstring DataLists) try
+std::vector<Moore::Shared::Dialogue> Moore::Backend::ParseDataLists (std::wstring DataLists) //try
 {
 	std::wstring Docs = LoadDocs (DataLists);
 	std::wstring Configuration = LoadConfiguration (DataLists); //nothing is ever done with the config
@@ -688,7 +693,7 @@ std::vector<Moore::Shared::Dialogue> Moore::Backend::ParseDataLists (std::wstrin
 
 	return Return;
 }
-catch (...)
-{
-	throw Shared::BackendException ("PARSING_ERROR", Shared::BackendException::BackendComponent::DATALISTS_PARSE);
-}
+//catch (...)
+//{
+//	throw Shared::BackendException ("PARSING_ERROR", Shared::BackendException::BackendComponent::DATALISTS_PARSE);
+//}

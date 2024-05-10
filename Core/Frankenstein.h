@@ -24,7 +24,6 @@ class Moore::Core::Frankenstein final
 
 	static void LoadDataLists (const Backend::DataLists d)
 	{
-		memcpy (&Datas, &d, sizeof (d)); //because assignment deleted and I dont want to define one
 	}
 
 	static Backend::StateTable States;

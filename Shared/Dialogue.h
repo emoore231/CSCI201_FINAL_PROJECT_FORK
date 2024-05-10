@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include ".\Option.h"
+#include "Option.h"
 
 namespace Moore
 {
@@ -42,6 +42,7 @@ public:
 		const std::vector<Option> _Options
 	);
 
+/*
 	//debug tracing
 	template <typename Char, typename CharTraits>
 	friend std::basic_ostream<Char, CharTraits>& operator<< (std::wostream& lhs, const Dialogue& rhs)
@@ -58,5 +59,5 @@ public:
 		}
 
 		return lhs;
-	}
+	}*/
 };

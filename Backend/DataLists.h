@@ -18,5 +18,5 @@ public:
 	const DialogueTable Dialogues;
 	const Configuration Config;
 
-	const DataLists (std::wstring FileName);
+	DataLists (const std::wstring FileName);
 };
